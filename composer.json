@@ -1,0 +1,12 @@
+{
+    "name": "beesperester/php-webdav",
+    "autoload": {
+        "psr-4" : {
+            "Beesperester\\WebDav\\" : "src/Beesperester/WebDav"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/http": "^5.4"
+    }
+}
