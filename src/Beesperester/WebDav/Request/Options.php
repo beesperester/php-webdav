@@ -8,15 +8,18 @@ use Request;
 // SimpleXML
 use \SimpleXMLElement;
 
+// Illuminate
+use Illuminate\Http\Response as IlluminateResponse;
+
 class Options extends Request
 {
     /**
      * Handle the request and return xml
      *
-     * @return SimpleXMLElement
+     * @return Illuminate\Http\Response
      */
     public function handle()
     {
-        return new SimpleXMLElement('<foo/>');
+        return Response::create('foo');
     }
 }

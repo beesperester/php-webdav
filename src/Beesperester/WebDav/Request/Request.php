@@ -34,9 +34,22 @@ abstract class Request implements RequestInterface
     }
 
     /**
+     * Create Request from path and body
+     *
+     * @param string $request_path
+     * @param string $request_body
+     *
+     * @return Request
+     */
+    public static function create($request_path = '/', $request_body = '')
+    {
+        return new static($request_path, $request_body);
+    }
+
+    /**
      * Handle the request and return xml
      *
-     * @return SimpleXMLElement
+     * @return Illuminate\Http\Response
      */
     abstract public function handle();
 }
