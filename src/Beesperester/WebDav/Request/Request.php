@@ -47,7 +47,7 @@ abstract class Request implements RequestInterface
     }
 
     /**
-     * Handle the request and return xml
+     * Handle the request and return response
      *
      * @return Illuminate\Http\Response
      */

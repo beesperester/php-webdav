@@ -16,4 +16,25 @@ use Beesperester\WebDav\WebDav;
 // basic server logic
 $request = Request::createFromGlobals();
 
-WebDav::handleRequest($request)->send();
+/*$tree = [
+    WebDav::createCollection([
+        'displayname' => 'some_dir',
+        'root' => '/'
+    ]),
+    WebDav::createCollection([
+        'displayname' => 'some_other_dir',
+        'root' => '/',
+        'children' => [
+            WebDav::createCollection([
+                'displayname' => 'some_sub_dir',
+                'root' => '/some_other_dir/'
+            ])
+        ]
+    ])
+];*/
+
+WebDav::handleRequest($request))->send();
+
+#$webdav->send();
+
+#$webdav->handle()->send();

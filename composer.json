@@ -3,7 +3,10 @@
     "autoload": {
         "psr-4" : {
             "Beesperester\\WebDav\\" : "src/Beesperester/WebDav"
-        }
+        },
+        "files": [
+            "src/Beesperester/WebDav/Helper/simplexml_helper.php"
+        ]
     },
     "minimum-stability": "stable",
     "require": {
