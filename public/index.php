@@ -5,13 +5,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // require dependencies
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 // Illuminate
 use Illuminate\Http\Request;
 
 // WebDav
 use Beesperester\WebDav\WebDav;
+use Beesperester\WebDav\Response\Collection;
 
 // basic server logic
 $request = Request::createFromGlobals();
@@ -33,8 +34,32 @@ $request = Request::createFromGlobals();
     ])
 ];*/
 
-WebDav::handleRequest($request))->send();
+//$webdav = WebDav::handleRequest($request);
 
-#$webdav->send();
+//$webdav->handle()->send();
 
-#$webdav->handle()->send();
+$response = WebDav::propfind(function ($path) {
+    switch($path) {
+        case 'foo':
+            $data = [
+                WebDav::createCollection([
+                    'displayname' => 'bar',
+                    'root' => '/foo',
+                ])
+            ];
+            break;
+        default:
+            $data = [
+                WebDav::createCollection([
+                    'displayname' => 'foo',
+                    'root' => '/',
+                ])
+            ]; 
+    }
+
+    return Collection::fromData($path, $data);
+});
+
+$response->handle()->send();
+
+#$response->send();
