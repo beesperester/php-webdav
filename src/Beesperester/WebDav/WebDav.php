@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 // Collection
 use Beesperester\WebDav\FS\Collection;
+use Beesperester\WebDav\FS\File;
 
 // Request
 use Beesperester\WebDav\Request\Get;
@@ -29,20 +30,9 @@ class WebDav
      *
      * @return Illuminate\Http\Response
      */
-    public static function handleRequest(Request $request)
+    public static function handleRequest(Request $request, $callback)
     {
-        switch (strtolower($request->method())) {
-            case 'get':
-                return Get::create($request->path(), $request->getContent());
-                
-            case 'options':
-                return Options::create($request->path(), $request->getContent());
-
-            case 'propfind':
-                return Propfind::create($request->path(), $request->getContent());
-        }
-
-        throw new InvalidMethodException();
+        return $callback($request);   
     }
 
     /**
@@ -60,5 +50,10 @@ class WebDav
     public static function createCollection(array $data)
     {
         return Collection::fromData($data);
+    }
+
+    public static function createFile(array $data)
+    {
+        return File::fromData($data);
     }
 }

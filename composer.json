@@ -10,6 +10,7 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "illuminate/http": "^5.4"
+        "illuminate/http": "^5.4",
+        "nesbot/carbon": "^1.22"
     }
 }
